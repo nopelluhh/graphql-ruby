@@ -152,6 +152,20 @@ describe GraphQL::Analysis::AST::FieldUsage do
     end
   end
 
+  describe "query with an optional input object argument sent as null" do
+    let(:query_string) {%|
+      query {
+        searchDairy(singleProduct: null) {
+          __typename
+        }
+      }
+    |}
+
+    it "tolerates null for input object argument" do
+      result
+    end
+  end
+
   describe "query with deprecated arguments nested in an argument" do
     let(:query_string) {%|
       query {
